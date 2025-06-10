@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>S.E Mapas e Gfxs</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e2f;
+      color: #fff;
+    }
+
+    header {
+      background: #282845;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    .container {
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .section {
+      background: #2b2b40;
+      border-radius: 10px;
+      padding: 20px;
+      width: 400px;
+      box-shadow: 0 0 10px #0005;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #ffd700;
+    }
+
+    .item {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      background-color: #1a1a2e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item button {
+      background-color: #ffd700;
+      color: #1e1e2f;
+      font-weight: bold;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>S.E Mapas e Gfxs</header>
+
+<div class="container">
+  <div class="section">
+    <h2>🗺 Mapas</h2>
+    <div class="item">Personalizado - 200 Robux / R$20 <button onclick="pedir('Mapa Personalizado')">Pedir</button></div>
+    <div class="item">Não personalizado - 100 Robux / R$10 <button onclick="pedir('Mapa Não Personalizado')">Pedir</button></div>
+    <div class="item">Script adicional - 50 Robux / R$5 <button onclick="pedir('Script Adicional')">Pedir</button></div>
+  </div>
+
+  <div class="section">
+    <h2>🎨 GFXs</h2>
+    <div class="item">Sem ID - 30 Robux / R$3 <button onclick="pedir('GFX Sem ID')">Pedir</button></div>
+    <div class="item">Com ID - 40 Robux / R$4 <button onclick="pedir('GFX Com ID')">Pedir</button></div>
+    <div class="item">Acessórios 3D - 50 Robux / R$5 <button onclick="pedir('GFX 3D')">Pedir</button></div>
+    <div class="item">Em Dupla (sem ID) - 60 Robux / R$6 <button onclick="pedir('GFX Dupla Sem ID')">Pedir</button></div>
+    <div class="item">Em Dupla (com ID) - 70 Robux / R$7 <button onclick="pedir('GFX Dupla Com ID')">Pedir</button></div>
+    <div class="item">Dupla com 3D - 80 Robux / R$8 <button onclick="pedir('GFX Dupla 3D')">Pedir</button></div>
+    <div class="item">Mais de 2 pessoas - 90 Robux / R$9 <button onclick="pedir('GFX +2 Pessoas')">Pedir</button></div>
+  </div>
+</div>
+
+<script>
+  function pedir(produto) {
+    const url = chat.html?produto=${encodeURIComponent(produto)};
+    window.location.href = url;
+  }
+</script>
+
+</body>
+</html>
