@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat - Pedido</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e2f;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: #282845;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: #ffd700;
+      width: 100%;
+    }
+
+    #chat {
+      margin-top: 30px;
+      width: 90%;
+      max-width: 600px;
+      background-color: #121223;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    #messages {
+      height: 250px;
+      overflow-y: auto;
+      background: #0d0d1a;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      background: #282845;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    #userInput {
+      display: flex;
+      gap: 10px;
+    }
+
+    #userInput input, #fileInput {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    #userInput button {
+      background-color: #ffd700;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #1e1e2f;
+    }
+  </style>
+</head>
+<body>
+
+<header>S.E Mapas e Gfxs</header>
+
+<div id="chat">
+  <div id="messages"></div>
+  <div id="userInput">
+    <input type="text" id="textInput" placeholder="Digite aqui...">
+    <input type="file" id="fileInput">
+    <button onclick="sendMessage()">Enviar</button>
+  </div>
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const produto = urlParams.get('produto');
+  const chat = document.getElementById("messages");
+
+  chat.innerHTML = `
+    <div class="message">🤖 Olá! Você selecionou: <strong>${produto}</strong>. Deseja confirmar o pedido?</div>
+  `;
+
+  function sendMessage() {
+    const input = document.getElementById("textInput");
+    const file = document.getElementById("fileInput").files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        chat.innerHTML += <div class="message">📁 Arquivo enviado: <a href="${e.target.result}" target="_blank">${file.name}</a></div>;
+        document.getElementById("fileInput").value = "";
+      };
+      reader.readAsDataURL(file);
+    }
+
+    if (input.value.trim() !== "") {
+      chat.innerHTML += <div class="message">👤 Você: ${input.value}</div>;
+      respostaIA(input.value.trim());
+      input.value = "";
+    }
+
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function respostaIA(msg) {
+    setTimeout(() => {
+      if (msg.toLowerCase().includes("sim")) {
+        chat.innerHTML += <div class="message">🤖 Pedido confirmado! Enviando chave Pix...</div>;
+        chat.innerHTML += <div class="message">🔑 Chave Pix: <strong>f27e15d6-1f05-474f-ba9c-88bc465de2ec</strong></div>;
+        chat.innerHTML += <div class="message">📝 Envie sua imagem, print ou requisitos abaixo!</div>;
+      } else {
+        chat.innerHTML += <div class="message">🤖 Ok! Me avise se mudar de ideia.</div>;
+      }
+      chat.scrollTop = chat.scrollHeight;
+    }, 800);
+  }
+</script>
+
+</body>
+</html>
